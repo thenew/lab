@@ -1,0 +1,9 @@
+.pages {
+	position: relative;
+	width: 300%;
+}
+.page {
+	float: left;
+	width: 33.2%;
+	min-height: 100%;
+}

@@ -9,10 +9,10 @@
 <body class="home">
 	<div class="wrap">
 		<ol class="notes">
-			<li><a href="customScrollBar">customScrollBar</a></li>
+			<li><a href="customScrollBar">custom ScrollBar</a></li>
 			<li><a href="logo">thenew Logo</a></li>
-<!-- 			<li><a href="scroll/index.html">scrollAnchor</a></li>
-			<li><a href="FF/index.html">FF</a></li>
+ 			<li><a href="scroll">scroll Anchor</a></li>
+<!--			<li><a href="FF/index.html">FF</a></li>
 			<li><a href="share/index.html">Share</a></li>
 			<li><a href="swfobject/index.html">SWFObject</a></li> -->
 		</ol>
