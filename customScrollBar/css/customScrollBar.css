@@ -1,0 +1,155 @@
+
+#container {
+  position: relative;
+  float: left;
+  width: 320px;
+  height: 100%;
+  margin:0 20px 0 0;
+  overflow: hidden;
+}
+.hideme {
+	display: none;
+}
+
+/* =============================================================================
+   ::Scrollbar
+   ========================================================================== */
+
+.scrollme {
+  float: left;
+  overflow: hidden;
+}
+.scrollbar-vert {
+  float: left;
+  width: 10px;
+  height: 100%;
+  margin: 0;
+  border: 1px solid #000;
+  -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,.9) inset, 0px 0px 2px rgba(200,200,200,.2);
+     -moz-box-shadow: 1px 1px 5px rgba(0,0,0,.9) inset, 0px 0px 2px rgba(200,200,200,.2);
+          box-shadow: 1px 1px 5px rgba(0,0,0,.9) inset, 0px 0px 2px rgba(200,200,200,.2);
+}
+.handle-vert {
+  float: right;
+  width: 100%;
+  height: 64%;
+  cursor: pointer;
+  background-color: #666;
+}
+.handle-vert:active {
+  background-color: #444;
+}
+.scrollbar-vert,
+.handle-vert {
+  -moz-border-radius : 10px;
+  -webkit-border-radius : 10px;
+  border-radius : 10px;
+}
+.scrollbar-vert.nojavascript {
+  display: none;
+}
+
+
+/* =============================================================================
+   ::Scrollbar style = Button Slider
+   ========================================================================== */
+
+.scrollbar-vert.slider {
+  width: 4px;
+}
+.slider .handle-vert {
+  position: relative;
+  left: 9px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  background-color: #22B573;
+  -webkit-box-shadow: 1px 1px 6px rgba(0,0,0,.9), -1px -1px 10px rgba(0,0,0,.4) inset;
+     -moz-box-shadow: 1px 1px 6px rgba(0,0,0,.9), -1px -1px 10px rgba(0,0,0,.4) inset;
+          box-shadow: 1px 1px 6px rgba(0,0,0,.9), -1px -1px 10px rgba(0,0,0,.4) inset;
+  -webkit-border-radius : 20px;
+     -moz-border-radius : 20px;
+          border-radius : 20px;
+}
+.slider .handle-vert:hover {
+  background-color: #4EDE9D;
+}
+
+/* =============================================================================
+   ::Scrollbar style = mac
+   ========================================================================== */
+
+.scrollbar-vert.mac:hover,
+.scrollme:hover + .scrollbar-vert {
+  opacity: 0.9;
+  -moz-opacity: 0.9;
+  filter:alpha(opacity=90);
+}
+
+.scrollbar-vert.mac {
+  position: relative;
+  left: -35px;
+  top: 2%;
+  width: 8px;
+  height: 96%;
+  background-color: rgba(0,0,0,.2);
+  border: none;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+  opacity: 0;
+  -moz-opacity: 0;
+  filter:alpha(opacity=0);
+  -webkit-transition: opacity .2s ease-in-out;
+     -moz-transition: opacity .2s ease-in-out;
+          transition: opacity .2s ease-in-out;
+      
+}
+.mac .handle-vert {
+  background-color: #999;
+}
+.mac .handle-vert:hover,
+.mac .handle-vert:active {
+  background-color: #bbb;
+}
+
+/* =============================================================================
+   Style (optionnal)
+   ========================================================================== */
+
+.wrap {
+  height: 25%;
+}
+
+.empty:after {
+  content:'Click button +';
+  font-family: 'EraserRegular';
+  font-size: 18px;
+  position: absolute;
+  z-index: 2;
+  top: 47%;
+  width: 100%;
+  text-align: center;
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter:alpha(opacity=50);
+}
+.empty:hover:after {
+  opacity: 1;
+  -moz-opacity: 1;
+  filter:alpha(opacity=100);
+}
+.empty.almost:after {
+  content:'Again';
+}
+li {
+	height: 30px;
+	line-height: 30px;
+  padding: 0 30px;
+  color: #FFDFBB;
+  background: rgba(250,250,250,.1);
+}
+#container li:nth-child(2n) {
+  color: #FFC280;
+  background: rgba(250,250,250,.2);
+}

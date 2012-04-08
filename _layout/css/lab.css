@@ -1,0 +1,311 @@
+/* lab */
+
+/* --------------------------------
+   :: Layout
+   -------------------------------- */
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+	color: #eee;
+	font-family: Helvetica, sans-serif;
+	background: url(../img/bg.png) repeat #202020;
+}
+.wrap {
+	width: 360px;
+	height: 260px;
+	padding: 20px;
+	margin: 100px auto 20px;
+}
+
+/* --------------------------------
+   :: Header
+   -------------------------------- */
+header {
+	position: relative;
+	height: 24px;
+	padding: 6px 12px;
+   	text-align: center;
+}
+header a {
+	position: absolute;
+	left: 12px;
+	font-size: 10px;
+	font-style: italic;
+}
+header h2 {
+	display: inline;
+	font-size: 1.4em;
+    font-family: 'EraserRegular';
+	color: #FFC280;
+	opacity: 0.8;
+}
+header h2:hover {
+	opacity: 1;
+	text-shadow: 0px 0px 10px #000;
+}
+/* --------------------------------
+   :: Footer
+   -------------------------------- */
+footer {
+	position: relative;
+	width: 75px;
+	height: 100px;
+	float: right;
+	margin: 0 12px 0 0;
+	background: rgba(20,20,20,.8);
+}
+
+/* Fonts */
+@font-face {
+    font-family: 'EraserRegular';
+    src: url('../fonts/EraserRegular-webfont.eot');
+    src: url('../fonts/EraserRegular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/EraserRegular-webfont.ttf') format('truetype'),
+         url('../fonts/EraserRegular-webfont.svg#EraserRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* --------------------------------
+   Contents Elements
+   -------------------------------- */
+.box {
+	background: rgba(20,20,20,.8);
+	border-top: 1px solid #48494a;
+	border-bottom: 1px solid #000;
+	border-radius: 4px;
+	box-shadow: 0px 0px 1px #000,
+				0px 0px 30px rgba(150,150,150,.1);
+}
+.inner-content {
+	border: 1px solid #000;
+	-webkit-box-shadow: 1px 1px 30px rgba(0,0,0,.9) inset, 0px 0px 2px rgba(200,200,200,.2);
+	   -moz-box-shadow: 1px 1px 30px rgba(0,0,0,.9) inset, 0px 0px 2px rgba(200,200,200,.2);
+	        box-shadow: 1px 1px 30px rgba(0,0,0,.9) inset, 0px 0px 2px rgba(200,200,200,.2);
+}
+.inner-content,
+.inner-content > * {
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	        border-radius: 4px;
+}
+
+/* --------------------------------
+   CMD
+   -------------------------------- */
+.cmd {
+	position: fixed;
+	z-index: 999;
+	top: 36px;
+	left: 12px;
+}
+
+/* --------------------------------
+   Button
+   -------------------------------- */
+.the-button {
+	display : inline-block;
+	padding : 1em 3em;
+	-webkit-border-radius : .4em;
+	-moz-border-radius : .4em;
+	border-radius : .4em;
+	text-align : center;
+	text-decoration : none;
+	text-shadow : 0 1px 1px rgba(0,0,0,.5);
+	font : 12px/100% Arial,sans-serif;
+	font-weight : bold;
+	outline : none;
+	-webkit-box-shadow : 0 1px 1px rgba(200,200,200,.2);
+	-moz-box-shadow : 0 1px 1px rgba(200,200,200,.2);
+	box-shadow : 0 1px 1px rgba(200,200,200,.2);
+	cursor : pointer;
+}
+.the-button:hover {
+	text-decoration : none;
+	color : #FFF;
+}
+.the-button:active {
+	position : relative;
+	top : 1px;
+}
+.the-button {
+	border : solid 1px #478609;
+	color : #fff;
+	background : #b4f670;
+	background : -moz-linear-gradient(top,#b4f670 0%,#9ce74f 1%,#8bce47 99%,#5c8433 100%);
+	background : -webkit-gradient(linear,left top,left bottom,color-stop(0%,#b4f670),color-stop(1%,#9ce74f),color-stop(99%,#8bce47),color-stop(100%,#5c8433));
+	background : -webkit-linear-gradient(top,#b4f670 0%,#9ce74f 1%,#8bce47 99%,#5c8433 100%);
+	background : -o-linear-gradient(top,#b4f670 0%,#9ce74f 1%,#8bce47 99%,#5c8433 100%);
+	background : -ms-linear-gradient(top,#b4f670 0%,#9ce74f 1%,#8bce47 99%,#5c8433 100%);
+	background : linear-gradient(top,#b4f670 0%,#9ce74f 1%,#8bce47 99%,#5c8433 100%);
+	filter : progid;
+}
+.the-button:hover {
+	background : #5c8433;
+	background : -moz-linear-gradient(top,#5c8433 0%,#8bce47 1%,#9ce74f 99%,#b4f670 100%);
+	background : -webkit-gradient(linear,left top,left bottom,color-stop(0%,#5c8433),color-stop(1%,#8bce47),color-stop(99%,#9ce74f),color-stop(100%,#b4f670));
+	background : -webkit-linear-gradient(top,#5c8433 0%,#8bce47 1%,#9ce74f 99%,#b4f670 100%);
+	background : -o-linear-gradient(top,#5c8433 0%,#8bce47 1%,#9ce74f 99%,#b4f670 100%);
+	background : -ms-linear-gradient(top,#5c8433 0%,#8bce47 1%,#9ce74f 99%,#b4f670 100%);
+	background : linear-gradient(top,#5c8433 0%,#8bce47 1%,#9ce74f 99%,#b4f670 100%);
+	filter : progid;
+}
+.the-button:active {
+}
+.the-button.secondary {
+	padding : .7em 1.2em;
+	border : solid 1px #d6d7d8;
+	text-shadow : 0px 1px #fff;
+	text-transform : uppercase;
+	color : #7f7f80;
+	background : #f9f9f9;
+	background : -webkit-linear-gradient(top,#fff 0%,#f9f9f9 1%,#e4e5e5 100%);
+	background : -o-linear-gradient(top,#fff 0%,#f9f9f9 1%,#e4e5e5 100%);
+	background : -ms-linear-gradient(top,#fff 0%,#f9f9f9 1%,#e4e5e5 100%);
+	background : linear-gradient(top,#fff 0%,#f9f9f9 1%,#e4e5e5 100%);
+	filter : progid;
+}
+.the-button.secondary:hover {
+	color : #333;
+}
+.the-button.disabled {
+	border : solid 1px #111;
+	background : #3e3e3e;
+	background : -moz-linear-gradient(top,#3e3e3e 0%,#323232 1%,#202020 100%);
+	background : -webkit-gradient(linear,left top,left bottom,color-stop(0%,#3e3e3e),color-stop(1%,#323232),color-stop(100%,#202020));
+	background : -webkit-linear-gradient(top,#3e3e3e 0%,#323232 1%,#202020 100%);
+	background : -o-linear-gradient(top,#3e3e3e 0%,#323232 1%,#202020 100%);
+	background : -ms-linear-gradient(top,#3e3e3e 0%,#323232 1%,#202020 100%);
+	background : linear-gradient(top,#3e3e3e 0%,#323232 1%,#202020 100%);
+	cursor : not-allowed;
+	filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#3e3e3e',endColorstr='#202020',GradientType=0 );
+}
+
+/* --------------------------------
+   :: Lists
+   -------------------------------- */
+li {
+	line-height: 1.5em;
+}
+
+
+/* --------------------------------
+   :: Animations
+   -------------------------------- */
+.box {
+	transition: all .3s ease .2s;
+}
+a {
+	transition: color .3s ease .2s,
+	            opacity .3s ease .2s;
+}
+
+/* --------------------------------
+   :: Dis Vert
+   -------------------------------- */
+a {
+	color: #FFC280;
+	opacity: 0.8;
+}
+a:hover {
+	opacity: 1;
+	text-shadow: 0px 0px 10px #000;
+}
+.notes {
+    font-family: 'EraserRegular';
+    font-size: 18px;
+}
+.home .notes {
+	text-align: center;
+}
+
+::-moz-selection,
+::selection {
+	text-shadow : none;
+	color : #eee;
+	background : #666;
+}
+
+/* --------------------------------
+   :: Logo
+   -------------------------------- */
+.logo {
+	position: relative;
+	width: 50px;
+	height: 50px;
+	margin: 12px auto;
+	border-radius: 50%;
+}
+.logo,
+.logo .demi {
+	border-width: 5px;
+}
+.logo,
+.logo::after,
+.logo .demi,
+.logo .demi::before,
+.logo .demi::after {
+	border-color: #22B573;
+	border-style: solid;
+	-moz-transition: all 0.4s ease-in;
+	transition: all 0.4s ease-in;
+}
+.logo .demi {
+	position: absolute;
+	width: 22%;
+	height: 22%;
+	border-bottom: 7px solid transparent;
+	border-left: 7px solid transparent;
+	border-radius: 7px;
+}
+.logo::after,
+.logo .demi::before,
+.logo .demi::after {
+	content:'';
+	position: absolute;
+	border-width: 2px;
+	border-radius: 20px;
+}
+.logo .demi::before {
+	top: -46%;
+	left: -46%;
+	width: 10px;
+	height: 1px;
+}
+.logo .demi::after {
+	right: -46%;
+	bottom: -46%;
+	width: 1px;
+	height: 10px;
+}
+.logo::after {
+	top: 40%;
+	left: 12%;
+	width: 18%;
+	height: 0px;
+}
+.logo .t {
+	top: 25%;
+	left: 12%;
+	-webkit-transform: rotate(180deg);
+	   -moz-transform: rotate(180deg);
+	   	 -o-transform: rotate(180deg);
+	   	    transform: rotate(180deg);
+}
+.logo .n {
+	top: 30%;
+	right: 12%;
+}
+.logo:hover,
+.logo:hover::after,
+.logo:hover .demi,
+.logo:hover .demi::before,
+.logo:hover .demi::after {
+	border-color: #FF5D5D;
+}
+.logo:hover .demi {
+	border-bottom: 7px solid transparent;
+	border-left: 7px solid transparent;
+}
