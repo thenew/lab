@@ -1,9 +1,15 @@
 // function which generate the scroll bar
 // http://solutoire.com/2008/03/10/mootools-css-styled-scrollbar/
-function makeScrollbar(container,content,scrollbar,handle,horizontal,ignoreMouse){
+function makeScrollbar(container,content,scrollbar,handle,relativeHandle,horizontal,ignoreMouse){
 
+    var diff = content.getHeight() / container.getHeight();
     // if element exist and if the scroll is need
     if (container && content.getHeight() > container.getHeight()) {
+
+        if(relativeHandle){
+            var handleH = 100/diff;
+            $('handle').setStyle('height', handleH+'%');
+        }
         container.addClass('scrollme');
         scrollbar.removeClass('hideme');
         var steps = (horizontal?(container.getScrollSize().x - container.getSize().x):(container.getScrollSize().y - container.getSize().y))
@@ -34,7 +40,7 @@ function makeScrollbar(container,content,scrollbar,handle,horizontal,ignoreMouse
 }
 
 function scrollBar01(){
-    makeScrollbar($('container'), $('container-content'), $('scrollbar'), $('handle'));
+    makeScrollbar($('container'), $('container-content'), $('scrollbar'), $('handle'), true);
 }
 
 // call generate function if the window is resized
