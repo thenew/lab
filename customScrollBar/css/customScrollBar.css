@@ -58,7 +58,7 @@
 }
 .slider .handle-vert {
   position: relative;
-  left: 9px;
+  left: -9px;
   width: 22px;
   height: 22px;
   cursor: pointer;

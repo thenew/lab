@@ -9,6 +9,8 @@ function makeScrollbar(container,content,scrollbar,handle,relativeHandle,horizon
         if(relativeHandle){
             var handleH = 100/diff;
             $('handle').setStyle('height', handleH+'%');
+        }else{
+            $('handle').setStyle('height');
         }
         container.addClass('scrollme');
         scrollbar.removeClass('hideme');
@@ -40,7 +42,8 @@ function makeScrollbar(container,content,scrollbar,handle,relativeHandle,horizon
 }
 
 function scrollBar01(){
-    makeScrollbar($('container'), $('container-content'), $('scrollbar'), $('handle'), true);
+    var relativeHandle = ('slider' === newStyle) ? false : true;
+    makeScrollbar($('container'), $('container-content'), $('scrollbar'), $('handle'), relativeHandle);
 }
 
 // call generate function if the window is resized
@@ -48,10 +51,9 @@ window.addEvent('resize', function() {
     scrollBar01();
 });
 
-// hauteur du handle proportionnel
-
-
+// ---------------------------------
 // Optionnal
+// ---------------------------------
 
 var num = 0;
 
@@ -77,9 +79,10 @@ var keyup = function(e){
 }
 
 // select
+var newStyle;
 var oldStyle = 'default';
 $('style').addEvent('change', function(e) {
-    var newStyle = e.target.value;
+    newStyle = e.target.value;
     $('scrollbar').addClass(newStyle);
     $('scrollbar').removeClass(oldStyle);
     scrollBar01();
