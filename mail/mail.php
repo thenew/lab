@@ -32,7 +32,7 @@ if(isset($_POST) && !empty($_POST)){
 	$mail->CharSet = 'utf-8'; // encodage du mail
 	$mail->From = $_POST['name']; // votre adresse
 	$mail->FromName = $_POST['email']; // votre nom
-	$mail->AddAddress('mathilde.ampe@gmail.com'); // adresse du destinataire
+	$mail->AddAddress('ry.barthez@gmail.com'); // adresse du destinataire
 	//$mail->AddBCC('autreadresse@destinataire'); // ajout des destinataires copie cachée 
 	$mail->AddReplyTo('no-reply@thenew.fr');    // adresse de retour
 	$mail->Subject = '[formulaire lab] '.$_POST['email']; // sujet de votre message
