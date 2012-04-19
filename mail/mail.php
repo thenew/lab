@@ -39,9 +39,18 @@ if(isset($_POST) && !empty($_POST)){
 	$mail->Body = $tpl_mailbody; //pour un message HTML ne pas oubliez IsHTML(true)
 
 	if(!$mail->Send()){
-	  echo $mail->ErrorInfo;
-	} else{      
-	  echo 'Mail envoyé avec succès';
+		echo '
+		<ul class="fon_messages">
+			<li class="error"><p>Erreur lors de l\'envoi du mail</p></li>
+			<li class="error"><p>'.$mail->ErrorInfo.'</p></li>
+		</ul>
+	  ';
+	} else{
+	  echo '
+		<ul class="fon_messages">
+			<li class="success"><p>Mail envoyé avec succès</p></li>
+		</ul>
+	  ';
 	}
 
 	// Seulement si vous utilisez SMTP

@@ -68,6 +68,43 @@ footer {
     font-style: normal;
 }
 
+/*	--------------------------------------------------
+	= Messages
+	-------------------------------------------------- */
+.fon_messages {
+	display: block;
+	width: 95%;
+	margin: 0 auto;
+}
+.fon_messages > li {
+	padding: 10px 10px 10px 10px;
+	margin-bottom:10px;
+	background-color: rgba(0,0,0,.2);
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;
+}
+.fon_messages p {
+	display: block;
+	padding: 0px 0px 0px 20px;
+	font-size: 12px;
+	line-height: 14px;
+}
+.error{
+	border:1px solid #bc5752;
+}
+.success {
+	border: 1px solid #8BDC7A;
+}
+.error p {
+	color: #C4685A;
+	background: url(../img/error_icon.png) left 2px no-repeat;
+}
+.success p {
+	color: #75C95F;
+	background: url(../img/success_icon.png) left top no-repeat;
+}
+
 /* --------------------------------
    Contents Elements
    -------------------------------- */

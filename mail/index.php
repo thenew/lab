@@ -16,7 +16,7 @@ include('mail.php');
         </li>
         <li>
           <label for="name">Email</label>
-          <input type="text" id="name" name="name" placeholder="g.abitbol@laclasse.us" required />
+          <input type="email" id="name" name="name" placeholder="g.abitbol@laclasse.us" required />
         </li>
         <li>
           <label for="object">Sujet</label>
