@@ -18,7 +18,7 @@ var Fon_slider = new Class({
         pagination: '.pagination',
         nav: 'nav',
         layout: 'horizontal',
-        interval: 4000,
+        interval: 3000,
         duration: 1000,
         autostart: true
     },
@@ -65,11 +65,9 @@ var Fon_slider = new Class({
                 fon_slider.pagination.grab(li);
             });
         }
-
         // Anim
         var td = this.options.duration/1000;
         this.slider_list.setStyle('-' + this.prefix + '-transition-duration', td+'s');
-
         // Layout
         var sliderL = (this.layout == 'vertical') ? 'height' : 'width';
         this.slider_list.setStyle(sliderL, this.items.length*100 + '%');
@@ -79,14 +77,11 @@ var Fon_slider = new Class({
                 float: 'none'
             });
         }
-        
-        // Events
-        this.initevents();
         // Start
+        this.initevents();
+        this.fireEvent('initialize');
         if(this.options.autostart)
             this.start();
-
-        this.fireEvent('initialize');
     },
     initevents:function()
     {
