@@ -4,7 +4,9 @@ $includes = '
     <link rel="stylesheet" href="css/custom_scrollbar.css">
     <script src="../_js/mootools-core-1.3.1.js"></script>
     <script src="../_js/mootools-more-1.3.1.1.js"></script>
+    <script src="js/iscroll.js?v4"></script>
 ';
+
 include('../_layout/header.html');
 ?>
     <div class="cmd">
@@ -18,6 +20,7 @@ include('../_layout/header.html');
                 <option value="default" selected="selected">Defaut</option>
                 <option value="slider">Slider</option>
                 <option value="mac">Mac OS</option>
+                <option value="iscroll">iScroll</option>
             </select>
         </fieldset></form>
     </div>

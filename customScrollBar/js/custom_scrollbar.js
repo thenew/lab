@@ -41,12 +41,13 @@ function makeScrollbar(container,content,scrollbar,handle,relativeHandle,horizon
     }
 }
 
-function scrollBar01(){
+function scrollBar01() {
     var relativeHandle = ('slider' === newStyle) ? false : true;
     makeScrollbar($('container'), $('container-content'), $('scrollbar'), $('handle'), relativeHandle);
 }
 
 document.addEvent('domready', function() {
+    // call scrollbar
     scrollBar01();
 });
 
@@ -94,11 +95,23 @@ var keyup = function(e){
 // select
 var newStyle;
 var oldStyle = 'default';
+var my_iScroll;
 $('style').addEvent('change', function(e) {
     newStyle = e.target.value;
+    
     $('scrollbar').addClass(newStyle);
     $('scrollbar').removeClass(oldStyle);
-    scrollBar01();
+    if('iscroll' == newStyle) {
+        // mobile touch
+        my_iScroll = new iScroll('container', { scrollbarClass: 'scrollbar-vert iscroll ' });
+        $('scrollbar').addClass('hideme');
+    } else {
+        if(my_iScroll) {
+            my_iScroll.destroy();
+            my_iScroll = null;
+        }
+        scrollBar01();
+    }
     oldStyle = newStyle;
 });
 
