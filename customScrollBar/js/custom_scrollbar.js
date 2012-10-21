@@ -46,16 +46,24 @@ function scrollBar01(){
     makeScrollbar($('container'), $('container-content'), $('scrollbar'), $('handle'), relativeHandle);
 }
 
+document.addEvent('domready', function() {
+    scrollBar01();
+});
+
 // call generate function if the window is resized
 window.addEvent('resize', function() {
     scrollBar01();
 });
 
+
+
+
 // ---------------------------------
 // Optionnal
 // ---------------------------------
 
-var num = 0;
+// var num = 0;
+var num = $('container-content').getElements('> li').length;
 
 // Buttons
 $('add').addEvent('click', function(event){
@@ -67,8 +75,13 @@ $('rm').addEvent('click', function(event){
 
 // Keyboard Keys
 window.addEvent('domready', function() {
- window.addEvent('keyup', keyup);
+    // set
+    if(num == 1) $('container').addClass('almost');
+    else if(num >= 5) $('container').removeClass('empty').removeClass('almost');
+
+    window.addEvent('keyup', keyup);
 });
+
 var keyup = function(e){
   if ('=' == e.key && e.shift || '+' == e.key && !e.shift || 'p' == e.key) {
     add(e);
@@ -95,13 +108,13 @@ function add(e){
     var elem = new Element('li', {html: num+' Janvier'}).inject($('container-content'));
     scrollBar01();
     num++;
-    if(num == 1){$('container').addClass('almost');}
-    else if(num == 5){$('container').removeClass('empty').removeClass('almost');}
+    if(num == 1) $('container').addClass('almost');
+    else if(num >= 5) $('container').removeClass('empty').removeClass('almost');
 }
 function min(e){
     e.stop();
     $('container-content').getElement('li').destroy();
     scrollBar01();
     num--;
-    if(num == 0){$('container').addClass('empty');}
+    if(num == 0) $('container').addClass('empty');
 }
