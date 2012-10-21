@@ -1,3 +1,11 @@
+/** 
+ * 
+ * Licence MIT
+ * @author thenew <http://thenew.fr>
+ * @version 0.1
+ */
+
+
 /*
 <div id="fon-slider">
     <ul>
@@ -18,20 +26,33 @@ var Fon_slider = new Class({
         pagination: '.pagination',
         nav: 'nav',
         layout: 'horizontal',
+        // layout: 'fade',
         interval: 3000,
         duration: 1000,
         autostart: true
     },
-    // constructor 
     initialize: function(options) {
+        this.setOptions(options);
+        // Start
+        this.initevents();
+        this.fireEvent('initialize');
+        if(this.options.autostart)
+            this.start();
+    },
+    setOptions:function(options) {
+
+        // Overwrites this.options values with options
+        this.options = Object.merge(this.options, options);
+
         /*
          * Elements
          */
-        this.setOptions(options);
         this.slider = $(this.options.slider);
         // Slides
         this.slider_list = this.slider.getElement('> ul');
         this.items = this.slider_list.getElements('> li');
+        if (this.items.length < 2)
+            return this;
         // Pagination : child or brother of slider
         if(this.options.pagination) {
             this.pagination = this.slider.getElement(this.options.pagination);
@@ -45,9 +66,11 @@ var Fon_slider = new Class({
         // Timer
         this.timer;
         this.interval = this.options.interval;
+        this.autostart = this.options.autostart;
         // Pages
-        this.current_page = 1;
-        this.max_page = this.items.length;
+        this.current_page = 0;
+        this.max_page = this.items.length-1;
+        // TODO recupérer les autres params
         this.layout = this.options.layout;
         // Globals
         var fon_slider = this;
@@ -69,19 +92,33 @@ var Fon_slider = new Class({
         var td = this.options.duration/1000;
         this.slider_list.setStyle('-' + this.prefix + '-transition-duration', td+'s');
         // Layout
-        var sliderL = (this.layout == 'vertical') ? 'height' : 'width';
-        this.slider_list.setStyle(sliderL, this.items.length*100 + '%');
-        if(this.layout == 'vertical') {
-            this.items.setStyles({
-                height: this.slider.getStyle('height'),
-                float: 'none'
-            });
+
+        switch (this.layout) {
+            case "horizontal":
+                this.slider_list.set('morph', {duration: this.options.duration});
+                this.slider_list.setStyle('width', this.items.length*100 + '%');
+                if('left' != this.items[0].getStyle('float'))
+                    this.items.setStyle('float', 'left');
+                break;
+            case "vertical":
+                this.slider_list.set('morph', {duration: this.options.duration});
+                this.slider_list.setStyle('height', this.items.length*100 + '%');
+                if('left' != this.items[0].getStyle('float'))
+                    this.items.setStyle('float', 'none');
+                break;
+            case "fade":
+                if('absolute' != this.items[0].getStyle('position')) {
+                    this.items.setStyles({
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                    });
+                }
+                this.items.set('morph', {duration: this.options.duration});
+                this.items[0].setStyle('z-index', 1);
+                this.zindex_max = 1;
+                break;
         }
-        // Start
-        this.initevents();
-        this.fireEvent('initialize');
-        if(this.options.autostart)
-            this.start();
     },
     initevents:function()
     {
@@ -124,26 +161,46 @@ var Fon_slider = new Class({
     },
     play:function(page) {
         var page = (page == undefined) ? this.current_page+1 : page;
-        if(page > this.max_page) page = 1;
+        if(page > this.max_page) page = 0;
         else if(page <= 0) page = this.max_page;
 
-        if(this.layout == 'horizontal') var anim_prop = 'left';
-        else if(this.layout == 'vertical') var anim_prop = 'top';
+        // anim
+        switch (this.layout) {
+            case "horizontal":
+                this.slider_list.setStyle('left', (page)*-100+'%');
+                break;
+            case "vertical":
+                this.slider_list.setStyle('top', (page)*-100+'%');
+                break;
+            case "fade":
+                this.items[page].setStyles({
+                    'opacity': 0,
+                    'z-index': this.zindex_max+1
+                });
 
-        this.slider_list.setStyle(anim_prop, (page-1)*-100+'%')
+                this.items[page].morph({
+                    opacity: .9999
+                });
+                this.zindex_max++;
+                break;
+        }
+        this.items.removeClass('current');
+        this.items[page].addClass('current');
+
+        // update current page
         this.current_page = page;
+        this.fireEvent('next');
 
         // Pagination
         if(this.pagination) {
             this.pagination.getElements('li').removeClass('current');
-            this.pagination.getElements('li')[this.current_page-1].addClass('current');
+            this.pagination.getElements('li')[this.current_page].addClass('current');
         }
-
-        this.fireEvent('next');
 
     },
     start:function() {
-        this.timer = this.play.periodical(this.interval,this);
+        if(this.autostart)
+            this.timer = this.play.periodical(this.interval,this);
     }
 
 });
