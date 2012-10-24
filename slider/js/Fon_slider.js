@@ -126,10 +126,11 @@ var Fon_slider = new Class({
         // Pagination bullets
         if(this.pagination) {
             this.pagination.getElements('a').each(function(item, index){
-                item.addEvent('click', function(event){
-                    event.stop();
+                item.addEvent('click', function(e){
+                    e.stop();
                     clearInterval(fon_slider.timer);
-                    fon_slider.play(index+1);
+                    console.log(index);
+                    fon_slider.play(index);
                     if(!fon_slider.pause) fon_slider.start();
                 });
             });
@@ -137,8 +138,8 @@ var Fon_slider = new Class({
         // Nav : prev and next
         if(this.nav) {
             this.nav.getElements('a').each(function(item, index){
-                item.addEvent('click', function(event){
-                    event.stop();
+                item.addEvent('click', function(e){
+                    e.stop();
                     var new_page = (this.hasClass('prev')) ? fon_slider.current_page-1 : fon_slider.current_page+1;
                     clearInterval(fon_slider.timer);
                     fon_slider.play(new_page);
@@ -152,7 +153,7 @@ var Fon_slider = new Class({
     play: function(page) {
         var page = (page == undefined) ? this.current_page+1 : page;
         if(page > this.max_page) page = 0;
-        else if(page <= 0) page = this.max_page;
+        else if(page < 0) page = this.max_page;
 
         // anim
         switch (this.options.layout) {
