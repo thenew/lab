@@ -19,7 +19,7 @@ include('../_layout/header.html');
 </div>
 <div class="wrap">
   <div class="fon-slider-container">
-    <div id="fon-slider" class="fon-slider">
+    <div id="fon-slider" class="fon-slider <?php if(isset($_GET['layout'])) echo $_GET['layout']; ?>">
       <ul class="cf fon-slider-items">
         <li><img src="http://placehold.it/800x450/22B573/ffffff&text=Cupcake+ipsum" alt=""></li>
         <li><img src="http://placehold.it/800x450/FF5D5D/ffffff&text=dolor+sit" alt=""></li>
@@ -44,7 +44,6 @@ window.addEvent('domready', function(){
     <?php if(isset($_GET['layout'])) { ?>
       layout: "<?php echo $_GET['layout']; ?>",
     <?php } ?>
-      // autostart: false
   });
 });
 </script>

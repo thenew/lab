@@ -20,21 +20,31 @@
   height: 100%;
 }
 
-.fon-slider-items,
-.fon-slider-items > li {
-/*  -webkit-transition: all .4s cubic-bezier(1,0,.4,1);
+.fon-slider-items {
+  -webkit-transition: all .4s cubic-bezier(1,0,.4,1);
   -moz-transition:    all .4s cubic-bezier(1,0,.4,1);
   -o-transition:      all .4s cubic-bezier(1,0,.4,1);
-  transition:         all .4s cubic-bezier(1,0,.4,1);*/
+  transition:         all .4s cubic-bezier(1,0,.4,1);
 }
 
 .fon-slider-items > li {
+    float: left;
+    height: 450px;
+}
+
+.vertical .fon-slider-items > li {
+    float: none;
+}
+
+.fade .fon-slider-items > li {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    opacity: 0;
 }
+
 .fon-slider-items > .current {
 }
 

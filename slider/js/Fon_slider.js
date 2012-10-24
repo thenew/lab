@@ -26,9 +26,9 @@ var Fon_slider = new Class({
         pagination: '.pagination',
         nav: 'nav',
         layout: 'horizontal',
-        // layout: 'fade',
         interval: 3000,
-        duration: 1000,
+        duration: 400,
+        css_transition: true,
         autostart: true
     },
     initialize: function(options) {
@@ -39,8 +39,7 @@ var Fon_slider = new Class({
         if(this.options.autostart)
             this.start();
     },
-    setOptions:function(options) {
-
+    setOptions: function(options) {
         // Overwrites this.options values with options
         this.options = Object.merge(this.options, options);
 
@@ -70,8 +69,6 @@ var Fon_slider = new Class({
         // Pages
         this.current_page = 0;
         this.max_page = this.items.length-1;
-        // TODO recupérer les autres params
-        this.layout = this.options.layout;
         // Globals
         var fon_slider = this;
         this.prefix = (Browser.Engine.gecko ? 'moz' : (Browser.Engine.webkit ? 'webkit' : 'o'));
@@ -88,39 +85,33 @@ var Fon_slider = new Class({
                 fon_slider.pagination.grab(li);
             });
         }
-        // Anim
-        var td = this.options.duration/1000;
-        this.slider_list.setStyle('-' + this.prefix + '-transition-duration', td+'s');
-        // Layout
 
-        switch (this.layout) {
+        // Layout & Anim
+        switch(this.options.layout) {
             case "horizontal":
-                this.slider_list.set('morph', {duration: this.options.duration});
-                this.slider_list.setStyle('width', this.items.length*100 + '%');
-                if('left' != this.items[0].getStyle('float'))
-                    this.items.setStyle('float', 'left');
-                break;
             case "vertical":
-                this.slider_list.set('morph', {duration: this.options.duration});
-                this.slider_list.setStyle('height', this.items.length*100 + '%');
-                if('left' != this.items[0].getStyle('float'))
-                    this.items.setStyle('float', 'none');
-                break;
-            case "fade":
-                if('absolute' != this.items[0].getStyle('position')) {
-                    this.items.setStyles({
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
+                // Add morph if !css_transition or IE < 9
+                if(!this.options.css_transition || 10 > this.ie()) {
+                    this.slider_list.set('morph', {
+                        duration: this.options.duration,
+                        unit: '%'
                     });
                 }
-                this.items.set('morph', {duration: this.options.duration});
-                this.items[0].setStyle('z-index', 1);
-                this.zindex_max = 1;
+                if("horizontal" == this.options.layout)
+                    var prop = "width";
+                else
+                    var prop = "height";
+                this.slider_list.setStyle(prop, this.items.length*100 + '%');
+
+            case "fade":
+                // this.items.set('morph', {duration: this.options.duration});
+                this.items.setStyles({'opacity': 0, 'z-index': 1});
+                this.items[0].setStyles({'opacity': 1, 'z-index': 2});
+                this.zindex_max = 2;
                 break;
         }
     },
-    initevents:function()
+    initevents: function()
     {
         var fon_slider = this;
         this.slider.addEvents({
@@ -159,29 +150,48 @@ var Fon_slider = new Class({
         }
 
     },
-    play:function(page) {
+    play: function(page) {
         var page = (page == undefined) ? this.current_page+1 : page;
         if(page > this.max_page) page = 0;
         else if(page <= 0) page = this.max_page;
 
         // anim
-        switch (this.layout) {
+        switch (this.options.layout) {
             case "horizontal":
-                this.slider_list.setStyle('left', (page)*-100+'%');
+                if(!this.options.css_transition || (this.ie() && 10 > this.ie()) )
+                    this.slider_list.morph({left: (page)*-100});
+                else
+                    this.slider_list.setStyle('left', (page)*-100+'%');
                 break;
             case "vertical":
-                this.slider_list.setStyle('top', (page)*-100+'%');
+                if(!this.options.css_transition || (this.ie() && 10 > this.ie()) )
+                    this.slider_list.morph({top: (page)*-100});
+                else
+                    this.slider_list.setStyle('top', (page)*-100+'%');
                 break;
             case "fade":
-                this.items[page].setStyles({
-                    'opacity': 0,
-                    'z-index': this.zindex_max+1
-                });
 
-                this.items[page].morph({
-                    opacity: .9999
+
+                var fs = this;
+                var zindex_max = this.zindex_max;
+                var current_page = this.current_page;
+                var fade_fx = new Fx.Morph( fs.items[page], {
+                        transition: 'cubic:in:out',
+                        duration: fs.options.duration,
+                        link: 'chain',
+                        onStart: function(){
+                            fs.items[page].setStyles({
+                                'opacity': 0,
+                                'z-index': zindex_max+1
+                            });
+                        },
+                        onComplete: function(){
+                            fs.items[current_page].setStyles({ 'opacity': 0 });
+                        }
                 });
+                fade_fx.start({ 'opacity': 1 });
                 this.zindex_max++;
+
                 break;
         }
         this.items.removeClass('current');
@@ -198,9 +208,19 @@ var Fon_slider = new Class({
         }
 
     },
-    start:function() {
+    start: function() {
         if(this.autostart)
             this.timer = this.play.periodical(this.interval,this);
+    },
+    // functions
+    ie: function() {
+        var v = 3,
+            div = document.createElement('div'),
+            all = div.getElementsByTagName('i');
+        while (
+            div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+            all[0]
+        );
+        return v > 4 ? v : null;
     }
-
 });
