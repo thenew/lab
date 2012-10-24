@@ -102,9 +102,8 @@ var Fon_slider = new Class({
                 else
                     var prop = "height";
                 this.slider_list.setStyle(prop, this.items.length*100 + '%');
-
+                break;
             case "fade":
-                // this.items.set('morph', {duration: this.options.duration});
                 this.items.setStyles({'opacity': 0, 'z-index': 1});
                 this.items[0].setStyles({'opacity': 1, 'z-index': 2});
                 this.zindex_max = 2;
