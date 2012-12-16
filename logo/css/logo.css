@@ -1,141 +1,179 @@
- .wrap > div {
-	margin: 0 0 75px;
-}
-.wrap > div+div {
-	margin: 0 0 50px;
+.wrap > div {
+    margin: 0 0 75px;
 }
 
+.wrap > div+div {
+    margin: 0 0 50px;
+}
 
 /*Logo*/
 
-.logo,
-.logo .demi {
-	border-width: 20px;
-}
-.logo,
-.logo::after,
-.logo .demi,
-.logo .demi::before,
-.logo .demi::after {
-	border-color: #22B573;
-	border-style: solid;
-	-moz-transition: all 0.4s ease-in;
-	transition: all 0.4s ease-in;
-}
-.logo {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	border-radius: 50%;
-}
-.logo .demi {
-	position: absolute;
-	width: 22%;
-	height: 22%;
-	border-bottom: 30px solid transparent;
-	border-left: 30px solid transparent;
-	border-radius: 30px;
-}
-.logo::after,
-.logo .demi::before,
-.logo .demi::after {
-	content:'';
-	position: absolute;
-	border-width: 10px;
-	border-radius: 20px;
-}
-.logo .demi::before {
-	top: -46%;
-	left: -46%;
-	width: 10px;
-	height: 0px;
-}
-.logo .demi::after {
-	right: -46%;
-	bottom: -46%;
-	width: 0px;
-	height: 10px;
-}
-.logo::after {
-	top: 40%;
-	left: 12%;
-	width: 18%;
-	height: 0px;
-}
-.logo .t {
-	top: 25%;
-	left: 12%;
-	-webkit-transform: rotate(180deg);
-	   -moz-transform: rotate(180deg);
-	   	 -o-transform: rotate(180deg);
-	   	    transform: rotate(180deg);
-}
-.logo .n {
-	top: 30%;
-	right: 12%;
+.t-logo,
+.t-logo .demi {
+    border-width: 20px;
 }
 
-.logo:hover,
-.logo:hover::after,
-.logo:hover .demi,
-.logo:hover .demi::before,
-.logo:hover .demi::after {
-	border-color: #FF5D5D;
-}
-.logo:hover .demi {
-	border-bottom: 30px solid transparent;
-	border-left: 30px solid transparent;
+.t-logo,
+.t-logo:after,
+.t-logo .demi:before,
+.t-logo .demi:after,
+.t-logo .demi {
+    border-color: #22B573;
+    border-style: solid;
 }
 
-.logo-200 {
-	width: 200px;
-	height: 200px;
+.t-logo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.t-logo .demi {
+    position: absolute;
+    width: 22%;
+    height: 22%;
+    border-bottom: 30px solid transparent;
+    border-left: 30px solid transparent;
+    border-radius: 30px;
+}
+
+.t-logo:after,
+.t-logo .demi:before,
+.t-logo .demi:after {
+    content: '';
+    position: absolute;
+    border-width: 10px;
+    border-radius: 20px;
+}
+
+.t-logo .demi:before {
+    top: -46%;
+    left: -46%;
+    width: 10px;
+    height: 0;
+}
+
+.t-logo .demi:after {
+    right: -46%;
+    bottom: -46%;
+    width: 0;
+    height: 10px;
+}
+
+.t-logo .t:after {
+    right: -43%;
+}
+
+.t-logo:after {
+    top: 40%;
+    left: 13%;
+    width: 18%;
+    height: 0;
+}
+
+.t-logo .t {
+    top: 25%;
+    left: 12%;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.t-logo .n {
+    top: 30%;
+    right: 12%;
+}
+
+
+/* hover */
+
+.t-logo:hover,
+.t-logo:hover:after,
+.t-logo:hover .demi:before,
+.t-logo:hover .demi:after,
+.t-logo:hover .demi {
+    border-color: #FF5D5D;
+}
+
+/* Animations */
+
+.t-logo,
+.t-logo:after,
+.t-logo .demi,
+.t-logo .demi:before,
+.t-logo .demi:after {
+    /*-webkit-transition: border-color .4s ease-in-out;*/
+    -moz-transition: border-color .4s ease-in-out;
+    -o-transition: border-color .4s ease-in-out;
+    transition: border-color .4s ease-in-out;
+}
+
+.t-logo:hover .demi {
+    border-bottom: 30px solid transparent;
+    border-left: 30px solid transparent;
+}
+
+.t-logo-200 {
+    width: 200px;
+    height: 200px;
 }
 
 /*Logo 100*/
-.logo-100 {
-	width: 100px;
-	height: 100px;
+
+.t-logo-100 {
+    width: 100px;
+    height: 100px;
 }
-.logo-100,
-.logo-100 .demi {
-	border-width: 10px;
+
+.t-logo-100,
+.t-logo-100 .demi {
+    border-width: 10px;
 }
-.logo-100::after,
-.logo-100 .demi::before,
-.logo-100 .demi::after {
-	border-width: 5px;
+
+.t-logo-100:after,
+.t-logo-100 .demi:before,
+.t-logo-100 .demi:after {
+    border-width: 5px;
 }
-.logo-100:hover .demi,
-.logo-100 .demi {
-	border-bottom: 15px solid transparent;
-	border-left: 15px solid transparent;
-	border-radius: 15px;
+
+.t-logo-100:hover .demi,
+.t-logo-100 .demi {
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-radius: 15px;
 }
 
 /*Logo 50*/
-.logo-50 {
-	width: 50px;
-	height: 50px;
+
+.t-logo-50 {
+    width: 50px;
+    height: 50px;
 }
-.logo-50,
-.logo-50 .demi {
-	border-width: 5px;
+
+.t-logo-50,
+.t-logo-50 .demi {
+    border-width: 5px;
 }
-.logo-50::after,
-.logo-50 .demi::before,
-.logo-50 .demi::after {
-	border-width: 2px;
+
+.t-logo-50:after,
+.t-logo-50 .demi:before,
+.t-logo-50 .demi:after {
+    border-width: 2px;
 }
-.logo-50:hover .demi,
-.logo-50 .demi {
-	border-bottom: 7px solid transparent;
-	border-left: 7px solid transparent;
-	border-radius: 7px;
+
+.t-logo-50:hover .demi,
+.t-logo-50 .demi {
+    border-bottom: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-radius: 7px;
 }
-.logo-50 .demi::before {
-	height: 1px;
+
+.t-logo-50 .demi:before {
+    height: 1px;
 }
-.logo-50 .demi::after {
-	width: 1px;
+
+.t-logo-50 .demi:after {
+    width: 1px;
 }
