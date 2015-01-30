@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <script src="jquery.min.js" type="text/javascript"></script>
+    <script src="pixastic.all.temp.js" type="text/javascript"></script>
+    <script src="scripts.js" type="text/javascript"></script>
+    <style>
+        * {
+            visibility: visible;
+            opacity: 1;
+            -webkit-transition: opacity .3s, visibility 0s;
+            transition: opacity .3s, visibility 0s;
+        }
+        .hidden {
+            visibility: hidden;
+            opacity: 0;
+            -webkit-transition: opacity .3s, visibility 0s ease .3s;
+            transition: opacity .3s, visibility 0s ease .3s;
+        }
+        .img {
+            position: relative;
+            display: inline-block;
+            width: 500px;
+            height: 300px;
+            overflow: hidden;
+            margin: 10px;
+            cursor: pointer;
+        }
+        img {
+            display: block;
+            margin: 0;
+        }
+        .img canvas,
+        .img img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+        <div class="img" data-js="blend">
+            <img src="images/01.jpg" alt="" data-blend="blue.gif" />
+        </div>
+        <div class="img" data-js="blend">
+            <img src="images/cat.jpg" alt="" data-blend="red.gif" />
+        </div>
+        <div class="img" data-js="blend">
+            <img src="images/cat.jpg" alt="" data-blend="01.jpg" />
+        </div>
+        <div class="img" data-js="blend">
+            <img src="images/01.jpg" alt="" data-blend="red-circle.png" />
+        </div>
+</body>
+</html>
