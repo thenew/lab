@@ -39,9 +39,38 @@
             top: 0;
             left: 0;
         }
+
+
+        .homepage-background {
+            display: block;
+            width: 500px;
+            height: 500px;
+            background-image: url(http://frontisme.nl/wp-content/themes/frontisme-2015/assets/images/bg-home-04.svg),
+                url(http://frontisme.nl/wp-content/themes/frontisme-2015/assets/images/bg-home-03.svg),
+                url(http://frontisme.nl/wp-content/themes/frontisme-2015/assets/images/bg-home-02.svg),
+                url(http://frontisme.nl/wp-content/themes/frontisme-2015/assets/images/bg-home-00.png);
+            background-position: 70% 80%,
+                30% 50%,
+                40% 35.5%,
+                50% 50%;
+            background-size: 15% auto,
+                15% auto,
+                84% auto,
+                35% auto;
+            background-blend-mode: normal,
+                multiply,
+                multiply,
+                normal;
+            background-repeat: no-repeat;
+            -webkit-filter: invert(1);
+            -moz-filter: invert(1);
+            filter: invert(1)
+        }
+
     </style>
 </head>
 <body>
+        <h1>Pixastic</h1>
         <div class="img" data-js="blend">
             <img src="images/01.jpg" alt="" data-blend="blue.gif" />
         </div>
@@ -54,5 +83,10 @@
         <div class="img" data-js="blend">
             <img src="images/01.jpg" alt="" data-blend="red-circle.png" />
         </div>
+
+        <h1>CSS Blend</h1>
+
+        http://frontisme.nl/
+        <div class="homepage-background"></div>
 </body>
 </html>
