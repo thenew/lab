@@ -1,0 +1,62 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+svg {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #090D16;
+}
+
+.wrap {
+    position: relative;
+    width: 400px;
+    height: 200px;
+}
+
+.wrap + .wrap {
+    margin-top: 20px;
+}
+
+.bg {
+    position: absolute;
+    z-index: 1;
+    top: 60px;
+    right: -60px;
+    bottom: 60px;
+    left: -60px;
+    background-color: rebeccapurple;
+}
+
+svg {
+    position: relative;
+    z-index: 2;
+}
+
+svg path {
+    fill: none;
+    stroke: #FF0000;
+    stroke-width: 20px;
+}
+
+svg,
+svg path {
+    mix-blend-mode: multiply;
+}
+
+.wrap-2 svg,
+.wrap-2 svg path {
+    /*stroke: #0000FF;*/
+    mix-blend-mode: saturation;
+}
