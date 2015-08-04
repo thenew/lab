@@ -1,13 +1,18 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <style class="cp-pen-styles">
+    <style>
+*,*:before,*:after{box-sizing:border-box}html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,abbr,acronym,address,code,em,img,footer,header,small,strike,strong,sub,sup,ol,ul,li,canvas,menu,nav,section,video,abbr,time,progress{margin:0;padding:0;border:0;font:inherit;font-size:100%;font-weight:inherit;vertical-align:baseline;outline:0;background:transparent no-repeat top left}ol,ul{padding:0;list-style:none}a{text-decoration:none}html{min-height:100%}body{position:relative;min-height:100%;font-family:"Segoe UI",Frutiger,"Frutiger Linotype","Dejavu Sans","Helvetica Neue",Arial,sans-serif;font-size:62.5%;line-height:1.4;color:#222;background-color:#fff;-webkit-text-size-adjust:none}strong{font-weight:700}svg{display:inline-block;max-height:100%;max-width:100%}svg line,svg use,svg path{fill:inherit}img,video{max-width:100%}.clearfix:before,.clearfix:after{content:"";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}
+
 body {
     padding:0;
     margin:0;
-    background: #F9F9F9;
-    color: #6C1F85;
+    background: #efefef;
+    background: #191028;
+    color: #633487;
+    color: #dc534b;
     text-align: center;
+    cursor: none;
 }
 #canvas {
     position: absolute;
@@ -38,7 +43,20 @@ body {
     text-transform: uppercase;
     font-weight: bold;
     color: #F9F9F9;
-    color: #6C1F85;
+    color: #633487;
+    color: #dc534b;
+}
+
+.list {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    bottom: 10%;
+    left: 10%;
+}
+
+.list .item {
+    position: absolute;
 }
 
 a {
@@ -64,12 +82,20 @@ a {
       <canvas id="canvas"></canvas>
       <div class="text">
           <ul class="list">
-              <li><a href="#about">About</a></li>
-              <li><a href="#works">Works</a></li>
+              <li class="item"><a href="#about">Lorem iptioms</a></li>
+              <li class="item"><a href="#works">Ipsum dororl</a></li>
+              <li class="item"><a href="#works">Ipsum dororl</a></li>
           </ul>
       </div>
     </div>
     <script>
+// Returns a random integer between min (included) and max (included)
+// Using Math.round() will give you a non-uniform distribution!
+function rand(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
 var canvas = document.getElementById("canvas"),
     context = canvas.getContext("2d");
 
@@ -100,15 +126,20 @@ setInterval(function() {
   draw();
 }, 1000/FPS);
 
-var dy = 5,
+var dy = 20,
     blocks = [],
     blocksX = [],
     blocksDescending = [],
-    minWait = 300,
+    blocksScaling = [],
+    minWait = 500,
     lastTime = +new Date();
 
 // circle
-var circleRadius = 100;
+var circleRadius = 0;
+var circleRadiusEnd = 100;
+var circleRadius2 = circleRadiusEnd;
+var circleRadiusBorder = 4;
+var circleAlpha = 0;
 var squatX = 0;
 var lastgap = 0;
 
@@ -121,7 +152,7 @@ function Block(x,y,width,height){
 
 Block.prototype.update = function(){
     if(this.height < canvas.height){
-        this.height+=dy
+        this.height+=dy;
     }else if(this.height > canvas.height){
         this.height = canvas.height;
     }else{
@@ -131,8 +162,21 @@ Block.prototype.update = function(){
 
 Block.prototype.render = function(){
     // this.y = 0;
-    context.fillStyle="#6C1F85";
+    context.fillStyle="#dc534b";
     context.fillRect(this.x, this.y, this.width, this.height);
+};
+
+var generateBlockScaling = function(){
+    var blockX = Math.floor( Math.random() * canvas.width );
+    var blockW = Math.floor( Math.random() * (5-4) + 4 );
+    var block = new Block( blockX, 0, blockW, 0 );
+
+    context.fillStyle="#dc534b";
+    context.fillRect(blockX, 0, blockW, canvas.height);
+
+    blocksScaling.push( block );
+
+    return block;
 };
 
 var generateBlock = function(){
@@ -141,7 +185,7 @@ var generateBlock = function(){
     //     blockX = Math.floor( Math.random() * canvas.width );
     // }
 
-    var gap = Math.floor( Math.random() * (4-0) + 0 );
+    var gap = rand(0,3);
     // plus souvent 1 que 0
     if(gap) {
         gap = 1;
@@ -163,7 +207,7 @@ var generateBlock = function(){
     var block = new Block( blockX, 0, blockW, canvas.height );
     // block.render();
 
-    context.fillStyle="#6C1F85";
+    context.fillStyle="#dc534b";
     context.fillRect(blockX, 0, blockW, canvas.height);
 
     squatX = blockX+blockW;
@@ -181,6 +225,17 @@ Block.prototype.anim = function(){
     }
 };
 
+var clearCircle = function (x, y, radius, alpha) {
+    context.save();
+    context.globalAlpha = alpha;
+    context.globalCompositeOperation = 'destination-out';
+    context.beginPath();
+    context.arc(x, y, radius, 0, 2 * Math.PI, false);
+    // context.fillStyle="#000";
+    context.fill();
+    context.restore();
+};
+
 //draw the screen
 function draw() {
     if(+new Date() > lastTime + minWait){
@@ -193,7 +248,27 @@ function draw() {
         // add a descding block
         var key = Math.floor(Math.random() * blocks.length);
         blocksDescending.push(blocks[key]);
+
+        // add a scaling block
+        generateBlockScaling();
+
     }
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    blocksScaling.forEach(function(e, i){
+
+        if(e.height >= canvas.height) {
+            console.log('i : ', i);
+            if(i != -1) {
+                blocksScaling.splice(i, 1);
+            }
+            blocks.push(e);
+        } else {
+            e.update();
+            e.render();
+        }
+    });
 
     blocksDescending.forEach(function(e, i){
 
@@ -203,20 +278,32 @@ function draw() {
                 blocksDescending.splice(i, 1);
             }
         }
-
-
         e.anim();
         e.render();
     });
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
 
     blocks.forEach(function(e){
         e.update();
         e.render();
     });
 
-    clearCircle(mouseX, mouseY, circleRadius);
+    // draw circle
+
+    // increase alpha
+    if(circleAlpha < 1) {
+        circleAlpha += 0.04;
+    }
+    if(circleRadius < circleRadiusEnd) {
+        circleRadius += 2;
+    }
+    clearCircle(mouseX, mouseY, circleRadius, circleAlpha);
+    if(circleRadius >= circleRadiusEnd) {
+        if(circleRadius2 < circleRadiusEnd+circleRadiusBorder) {
+            circleRadius2 += 2;
+        }
+        clearCircle(mouseX, mouseY, circleRadius2, circleAlpha-0.5);
+    }
 };
 
 // init
@@ -226,17 +313,22 @@ for (var i = canvas.width/2; i >= 0; i--) {
 
 
 
-var clearCircle = function (x, y, radius) {
-    context.save();
-    context.globalCompositeOperation = 'destination-out';
-    context.beginPath();
-    context.arc(x, y, radius, 0, 2 * Math.PI, false);
-    // context.fillStyle="#000";
-    context.fill();
-    context.restore();
-};
 
 
+    </script>
+
+
+    <script>
+var items = document.querySelectorAll('.item');
+var leftRight = ['left', 'right'];
+items[0].style.top = 0;
+items[0].style[leftRight[rand(0,1)]] = rand(0,75) + '%';
+
+items[1].style.top = '50%';
+items[1].style[leftRight[rand(0,1)]] = rand(0,75) + '%';
+
+items[2].style.bottom = 0;
+items[2].style[leftRight[rand(0,1)]] = rand(0,75) + '%';
     </script>
 </body>
 </html>
