@@ -2,17 +2,19 @@
 <head>
     <meta charset="UTF-8">
     <style>
-*,*:before,*:after{box-sizing:border-box}html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,abbr,acronym,address,code,em,img,footer,header,small,strike,strong,sub,sup,ol,ul,li,canvas,menu,nav,section,video,abbr,time,progress{margin:0;padding:0;border:0;font:inherit;font-size:100%;font-weight:inherit;vertical-align:baseline;outline:0;background:transparent no-repeat top left}ol,ul{padding:0;list-style:none}a{text-decoration:none}html{min-height:100%}body{position:relative;min-height:100%;font-family:"Segoe UI",Frutiger,"Frutiger Linotype","Dejavu Sans","Helvetica Neue",Arial,sans-serif;font-size:62.5%;line-height:1.4;color:#222;background-color:#fff;-webkit-text-size-adjust:none}strong{font-weight:700}svg{display:inline-block;max-height:100%;max-width:100%}svg line,svg use,svg path{fill:inherit}img,video{max-width:100%}.clearfix:before,.clearfix:after{content:"";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}
-
+*,*:before,*:after{box-sizing:border-box}html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,abbr,acronym,address,code,em,img,footer,header,small,strike,strong,sub,sup,ol,ul,li,canvas,menu,nav,section,video,abbr,time,progress{margin:0;padding:0;border:0;font:inherit;font-size:100%;font-weight:inherit;vertical-align:baseline;outline:0;background:transparent no-repeat top left}ol,ul{padding:0;list-style:none}a{text-decoration:none}html{min-height:100%}body{position:relative;min-height:100%;font-family:"Segoe UI",Frutiger,"Frutiger Linotype","Dejavu Sans","Helvetica Neue",Arial,sans-serif;font-size:62.5%;line-height:1.4;color:#222;background-color:#fff;-webkit-text-size-adjust:none}strong{font-weight:700}svg{display:inline-block;max-height:100%;max-width:100%}svg line,svg use,svg path{fill:inherit}img,video{max-width:100%}.clearfix:before,.clearfix:after{content:"";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}a{text-decoration:none;color:inherit;}
 body {
     padding:0;
     margin:0;
-    background: #efefef;
-    background: #191028;
-    color: #633487;
-    color: #dc534b;
     text-align: center;
     cursor: none;
+    overflow: hidden;
+}
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 80px;
 }
 #canvas {
     position: absolute;
@@ -22,7 +24,6 @@ body {
     bottom: 0;
     left: 0;
 }
-
 .text {
     position: relative;
     z-index: 2;
@@ -31,10 +32,13 @@ body {
     flex-direction: column;
     align-items: center;
     align-content: center;
-
 }
-
 .list {
+    position: absolute;
+    top: 12%;
+    right: 10%;
+    bottom: 10%;
+    left: 10%;
     display: block;
     margin: auto;
     list-style: none;
@@ -42,49 +46,45 @@ body {
     font-family: 'Arial', sans-serif;
     text-transform: uppercase;
     font-weight: bold;
-    color: #F9F9F9;
-    color: #633487;
-    color: #dc534b;
 }
-
-.list {
-    position: absolute;
-    top: 10%;
-    right: 10%;
-    bottom: 10%;
-    left: 10%;
-}
-
 .list .item {
     position: absolute;
 }
-
-a {
-    text-decoration: none;
-    color: inherit;
+.warp {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.04;
+    font-size: 60px;
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 0.8;
+    letter-spacing: -4px;
+    text-align: left;
 }
-/*
-#container {
-    width: 800px;
-    height: 800px;
-    background: #ffffff;
-    margin: 10px auto;
-}
 
-#canvas {
-    width: 800px;
-    height: 800px;
-}*/
     </style>
 </head>
 <body>
     <div id="container">
+<svg viewBox="0 0 100 100" class="logo">
+<path class="circle" d="M96.068,30.536c-2.518-5.955-6.123-11.301-10.713-15.892c-4.591-4.59-9.938-8.195-15.892-10.713 C63.297,1.323,56.748,0,50,0S36.703,1.323,30.536,3.931c-5.955,2.518-11.301,6.123-15.892,10.713 c-4.591,4.591-8.195,9.937-10.714,15.892C1.322,36.704,0,43.252,0,50c0,6.748,1.322,13.296,3.931,19.463 c2.519,5.954,6.123,11.301,10.714,15.892c4.59,4.591,9.937,8.195,15.892,10.714C36.703,98.677,43.252,100,50,100 s13.297-1.323,19.464-3.932c5.954-2.519,11.301-6.123,15.892-10.714c4.59-4.591,8.195-9.938,10.713-15.892 C98.678,63.296,100,56.748,100,50C100,43.252,98.678,36.704,96.068,30.536z M50,91.139C27.315,91.139,8.861,72.684,8.861,50 S27.315,8.861,50,8.861S91.14,27.316,91.14,50S72.685,91.139,50,91.139z"/>
+<path class="t" d="M50,59.241H31.773c-2.539,0-4.685-2.143-4.685-4.682l0-2.275c0-0.212,0-0.598,0-2.41h10.379c2.447,0,4.43-1.984,4.43-4.431 s-1.983-4.43-4.43-4.43H27.091c0-1.38,0-2.933,0-4.683c0-2.447-1.983-4.431-4.43-4.431c0,0,0,0,0,0c-2.446,0-4.43,1.983-4.431,4.43 c-0.002,14.252-0.003,15.499-0.003,15.951v2.28c0,3.625,1.433,7.035,4.035,9.606c2.57,2.539,5.947,3.936,9.511,3.936H50 c2.447,0,4.431-1.983,4.431-4.43C54.431,61.224,52.447,59.241,50,59.241z"/>
+<path class="n" d="M68.227,31.898H50c-2.447,0-4.431,1.984-4.431,4.431s1.984,4.43,4.431,4.43h18.227c2.539,0,4.685,2.145,4.685,4.685v2.275 c0,0.453-0.001,1.697-0.003,15.954c0,2.446,1.983,4.429,4.43,4.429c0,0,0,0,0.001,0c2.446,0,4.43-1.981,4.431-4.429 c0.002-14.252,0.003-15.496,0.003-15.949v-2.28c0-3.625-1.434-7.037-4.035-9.607C75.168,33.297,71.79,31.898,68.227,31.898z"/>
+</svg>
+    <div class="warp">
+web front git HTML JavaScript canvas UI PHP WordPress magento opensource vagrant responsive SVG web fonts CSS microdata Shopify Mootools sass Symfony Geolocation HTTP mustache UML less 3D ActionScript stylus MySQL Google Apps Grunt Ruby on rails Gulp microformats Zend Brunch Video jQuery liquid greensock Apache Windows Firefox Bootstrap Masonry DOM Browsersync Performance URL JSON Sublime text Linters NPM Email
+web front git HTML JavaScript canvas UI PHP WordPress magento opensource vagrant responsive SVG web fonts CSS microdata Shopify Mootools sass Symfony Geolocation HTTP mustache UML less 3D ActionScript stylus MySQL Google Apps Grunt Ruby on rails Gulp microformats Zend Brunch Video jQuery liquid greensock Apache Windows Firefox Bootstrap Masonry DOM Browsersync Performance URL JSON Sublime text Linters NPM Email
+    </div>
       <canvas id="canvas"></canvas>
       <div class="text">
           <ul class="list">
-              <li class="item"><a href="#about">Lorem iptioms</a></li>
-              <li class="item"><a href="#works">Ipsum dororl</a></li>
-              <li class="item"><a href="#works">Ipsum dororl</a></li>
+              <li class="item"><a target="_blank" href="http://iam.thenew.fr">About</a></li>
+              <li class="item"><a target="_blank" href="http://madeby.thenew.fr">Works</a></li>
           </ul>
       </div>
     </div>
@@ -95,6 +95,21 @@ function rand(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+var colorsFront = [
+    '#633487',
+    '#dc534b'
+];
+
+var colorsBack = [
+    '#efefef',
+    '#191028'
+];
+
+var colorsIndex = rand(0,1);
+
+document.body.style.color = colorsFront[colorsIndex];
+document.body.style.fill = colorsFront[colorsIndex];
+document.body.style.backgroundColor = colorsBack[colorsIndex];
 
 var canvas = document.getElementById("canvas"),
     context = canvas.getContext("2d");
@@ -118,8 +133,6 @@ window.addEventListener('mousemove', function(e) {
     mouseY = e.y;
 });
 
-
-
 //update and animate the screen
 var FPS = 60;
 setInterval(function() {
@@ -131,17 +144,19 @@ var dy = 20,
     blocksX = [],
     blocksDescending = [],
     blocksScaling = [],
-    minWait = 500,
+    minWait = 100,
     lastTime = +new Date();
 
 // circle
 var circleRadius = 0;
-var circleRadiusEnd = 100;
-var circleRadius2 = circleRadiusEnd;
+var circleRadiusEnd = 80;
+var circleRadius2 = 0;
 var circleRadiusBorder = 4;
 var circleAlpha = 0;
 var squatX = 0;
 var lastgap = 0;
+
+var mouseInViewport = false;
 
 function Block(x,y,width,height){
     this.x = x;
@@ -162,7 +177,7 @@ Block.prototype.update = function(){
 
 Block.prototype.render = function(){
     // this.y = 0;
-    context.fillStyle="#dc534b";
+    context.fillStyle = colorsFront[colorsIndex];
     context.fillRect(this.x, this.y, this.width, this.height);
 };
 
@@ -171,7 +186,7 @@ var generateBlockScaling = function(){
     var blockW = Math.floor( Math.random() * (5-4) + 4 );
     var block = new Block( blockX, 0, blockW, 0 );
 
-    context.fillStyle="#dc534b";
+    context.fillStyle = colorsFront[colorsIndex];
     context.fillRect(blockX, 0, blockW, canvas.height);
 
     blocksScaling.push( block );
@@ -259,7 +274,7 @@ function draw() {
     blocksScaling.forEach(function(e, i){
 
         if(e.height >= canvas.height) {
-            console.log('i : ', i);
+            // console.log('i : ', i);
             if(i != -1) {
                 blocksScaling.splice(i, 1);
             }
@@ -291,16 +306,30 @@ function draw() {
     // draw circle
 
     // increase alpha
-    if(circleAlpha < 1) {
-        circleAlpha += 0.04;
-    }
-    if(circleRadius < circleRadiusEnd) {
-        circleRadius += 2;
-    }
-    clearCircle(mouseX, mouseY, circleRadius, circleAlpha);
-    if(circleRadius >= circleRadiusEnd) {
-        if(circleRadius2 < circleRadiusEnd+circleRadiusBorder) {
-            circleRadius2 += 2;
+    if(mouseInViewport) {
+        if(circleAlpha < 1) {
+            circleAlpha += 0.04;
+        }
+        if(circleRadius < circleRadiusEnd) {
+            circleRadius += 5;
+        }
+        clearCircle(mouseX, mouseY, circleRadius, circleAlpha);
+        // if(circleRadius >= circleRadiusEnd) {
+            if(circleRadius2 < circleRadiusEnd+circleRadiusBorder) {
+                circleRadius2 += 5;
+            }
+            clearCircle(mouseX, mouseY, circleRadius2, circleAlpha-0.5);
+        // }
+    } else {
+        if(circleAlpha >= 1) {
+            circleAlpha -= 0.04;
+        }
+        if(circleRadius > 0) {
+            circleRadius -= 5;
+        }
+        clearCircle(mouseX, mouseY, circleRadius, circleAlpha);
+        if(circleRadius2 > 0) {
+            circleRadius2 -= 5;
         }
         clearCircle(mouseX, mouseY, circleRadius2, circleAlpha-0.5);
     }
@@ -312,7 +341,13 @@ for (var i = canvas.width/2; i >= 0; i--) {
 };
 
 
+document.addEventListener('mouseenter', function(e) {
+    mouseInViewport = true;
+});
 
+document.addEventListener('mouseleave', function(e) {
+    mouseInViewport = false;
+});
 
 
     </script>
@@ -321,14 +356,23 @@ for (var i = canvas.width/2; i >= 0; i--) {
     <script>
 var items = document.querySelectorAll('.item');
 var leftRight = ['left', 'right'];
-items[0].style.top = 0;
-items[0].style[leftRight[rand(0,1)]] = rand(0,75) + '%';
 
-items[1].style.top = '50%';
-items[1].style[leftRight[rand(0,1)]] = rand(0,75) + '%';
+if(items.length == 3) {
+    items[0].style.top = 0;
+    items[0].style[leftRight[rand(0,1)]] = rand(0,70) + '%';
 
-items[2].style.bottom = 0;
-items[2].style[leftRight[rand(0,1)]] = rand(0,75) + '%';
+    items[1].style.top = '50%';
+    items[1].style[leftRight[rand(0,1)]] = rand(0,75) + '%';
+
+    items[2].style.bottom = 0;
+    items[2].style[leftRight[rand(0,1)]] = rand(0,75) + '%';
+} else {
+    items[0].style.top = 0;
+    items[0].style[leftRight[rand(0,1)]] = rand(0,70) + '%';
+
+    items[1].style.bottom = 0;
+    items[1].style[leftRight[rand(0,1)]] = rand(0,75) + '%';
+}
     </script>
 </body>
 </html>
