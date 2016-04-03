@@ -30,6 +30,14 @@ body {
     margin-right: auto;
 }
 
+.js .wrapper {
+    opacity: 0;
+}
+
+.js.js-load .wrapper {
+    opacity: 1;
+}
+
 .logos {
     display: flex;
     flex-direction: row;

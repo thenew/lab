@@ -117,6 +117,7 @@ $(document).ready(function() {
 });
 
 $(window).load(function() {
+    $('html').addClass('js-load');
 
     openTl.timeScale(0.5);
     openTl.play();
