@@ -10,10 +10,10 @@
 <body class="home">
 	<div class="wrap">
 		<ol class="notes">
-			<li><a href="customScrollBar">custom ScrollBar</a></li>
+			<!-- <li><a href="customScrollBar">custom ScrollBar</a></li>
 			<li><a href="logo">thenew Logo</a></li>
  			<li><a href="scroll">scroll Anchor</a></li>
- 			<li><a href="slider">Fondations slider</a></li>
+ 			<li><a href="slider">Fondations slider</a></li> -->
  			<!-- <li><a href="mail">mail Form</a></li> -->
 <!--			<li><a href="FF/index.html">FF</a></li>
 			<li><a href="share/index.html">Share</a></li>
