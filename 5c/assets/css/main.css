@@ -30,6 +30,10 @@ body {
     margin-right: auto;
 }
 
+.wrapper {
+    opacity: 0;
+}
+
 .js .wrapper {
     opacity: 0;
 }
