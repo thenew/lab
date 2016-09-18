@@ -33,7 +33,7 @@ $(document).ready(function() {
 
      setTimeout(function() {
         circ.animate(outAttr, 1000, mina.easeinout, animIn);
-     }, 4000000);
+     }, 4000);
 });
 
 $(window).load(function() {
