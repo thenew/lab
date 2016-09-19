@@ -15,6 +15,7 @@ html {
 body {
     padding-left: 40px;
     padding-right: 40px;
+    height: 100%;
 }
 
 .wrapper {
@@ -58,8 +59,15 @@ body {
   margin: 100px auto;
   position: absolute;
   transform-style: preserve-3d;
-  animation: rotat 5s linear infinite;
   top: -50%;
+}
+
+.js .cube {
+    animation: reveal 1.5s ease-in infinite;
+}
+
+.js .cube.is-reveal {
+    animation: rotat 5s linear infinite;
 }
 
 .cube figure {
@@ -88,12 +96,21 @@ body {
 .cube .top    { background: #450012; }
 .cube .bottom { background: #450012;  }
 
-@keyframes rotat {
+@keyframes reveal {
   0% {
-    transform: rotateY(0deg);
+    transform: scale(0) rotateY(0deg) rotateX(-20deg);
   }
   100% {
-    transform: rotateY(360deg);
+    transform: scale(1) rotateY(400deg) rotateX(0);
+  }
+}
+
+@keyframes rotat {
+  0% {
+    transform: rotateY(400deg);
+  }
+  100% {
+    transform: rotateY(720deg);
   }
 }
 
@@ -109,4 +126,69 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
+}
+
+.gifs {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 450px;
+  bottom: 300px;
+}
+
+.gif {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 450px;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0s linear 0.1s, opacity 0.1s ease-in-out;
+}
+
+.gif.in {
+  opacity: 1;
+  visibility: visible;
+  transition: visibility 0s, opacity 0.1s ease-in-out;
+}
+
+.gif img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+}
+
+.gif .synthe {
+  position: absolute;
+  bottom: 5px;
+  left: 2%;
+  width: 80%;
+  height: auto;
+  font-size: 0;
+}
+
+.gif .synthe .text {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 0 0 40px;
+}
+
+.gif .synthe img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
 }
