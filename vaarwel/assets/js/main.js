@@ -5,7 +5,7 @@ $(document).ready(function() {
     // cube
     setTimeout(function() {
        jQuery('.cube').addClass('is-reveal');
-    }, 1500);
+    }, 1600);
 
     var s, circ;
 
