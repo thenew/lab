@@ -2,6 +2,11 @@
 $(document).ready(function() {
     $('html').removeClass('no-js').addClass('js');
 
+    // cube
+    setTimeout(function() {
+       jQuery('.cube').addClass('is-reveal');
+    }, 1500);
+
     var s, circ;
 
     //animation
@@ -37,12 +42,6 @@ $(document).ready(function() {
         circ.animate(outAttr, 1000, mina.easeinout, animIn);
      }, 4000);
 
-
-     // cube
-
-     setTimeout(function() {
-        jQuery('.cube').addClass('is-reveal');
-     }, 1500);
 
 
      setTimeout(function() {
