@@ -74,8 +74,8 @@ function displayGif(i) {
         return;
 
     // DEV
-    if(i > 0)
-        return;
+    // if(i > 0)
+    //     return;
 
     setTimeout(function() {
 
