@@ -7,8 +7,8 @@ $(document).ready(function() {
     //animation
     // var inAttr =  {r: 1, fill:'#450012'};
     // var outAttr = {r: 27.5, fill:'#450012'};
-    var inAttr =  {width: 1, fill:'#450012'};
-    var outAttr = {width: 39, fill:'#450012'};
+    var inAttr =  {width: 0.5, x: 20, fill:'#450012'};
+    var outAttr = {width: 39, x: 0, fill:'#450012'};
     function animIn(){
         var _this = this;
         setTimeout(function() {
@@ -24,7 +24,7 @@ $(document).ready(function() {
 
     // main
     s = Snap('#snap');
-    circ = s.rect(0,0,20,60)
+    circ = s.rect(10,0,20,60)
             .attr(inAttr);
             // .animate(outAttr, 1000, mina.easeinout, animIn);
     circPattern = circ
