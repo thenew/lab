@@ -46,7 +46,7 @@ $(document).ready(function() {
 
      setTimeout(function() {
         gifsParty();
-     }, 5000);
+     }, 2000);
 });
 
 $(window).load(function() {
