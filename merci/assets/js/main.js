@@ -2,40 +2,50 @@
 $(document).ready(function() {
     $('html').removeClass('no-js').addClass('js');
 
-    var s, circ;
+    var indexes = [];
 
-    //animation
-    var inAttr =  {r: 1, fill:'#450012'};
-    var outAttr = {r: 27.5, fill:'#450012'};
-    function animIn(){
-        var _this = this;
-        setTimeout(function() {
-      _this.animate(inAttr, 1000, mina.easeinout, animOut);
-        }, 4000);
+    var i;
+    for (i = 0; i < 34; i++) {
+        indexes.push(i);
     }
-    function animOut(){
-        var _this = this;
-        setTimeout(function() {
-      _this.animate(outAttr,1000, mina.easeinout, animIn);
-        }, 4000);
-    };
+    shuffle(indexes);
 
-    // main
-    s = Snap('#snap');
-    circ = s.circle(20,20,1)
-            .attr(inAttr);
-            // .animate(outAttr, 1000, mina.easeinout, animIn);
-    circPattern = circ
-            .pattern(0,0,40,40)
-            .attr({patternTransform:'rotate(45)'});
-    s.rect(0,0,'100%','100%')
-     .attr({fill: circPattern});
+    console.log('indexes: ', indexes);
 
-     setTimeout(function() {
-        circ.animate(outAttr, 1000, mina.easeinout, animIn);
-     }, 4000);
+    var $photos = $('.photos');
+
+    var j;
+    for (j = 0; j < indexes.length; j++) {
+        var index = indexes[j];
+        var img = $('<div class="item" style="background-image:url(assets/medias/photos/'+index+'.jpg);">');
+        $photos.append(img);
+    }
+
+
+    $('.photos').flickity({
+        cellSelector: '.item',
+        imagesLoaded: true,
+        bgLazyLoad: 2,
+        lazyLoad: 2,
+        autoPlay: 3000,
+        pauseAutoPlayOnHover: false
+    });
 });
 
 $(window).load(function() {
     $('html').addClass('js-load');
 });
+
+/**
+ * Shuffles array in place.
+ * @param {Array} a items The array containing the items.
+ */
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+    }
+}
