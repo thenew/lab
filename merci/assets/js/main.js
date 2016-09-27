@@ -2,34 +2,42 @@
 $(document).ready(function() {
     $('html').removeClass('no-js').addClass('js');
 
-    var indexes = [];
-
-    var i;
-    for (i = 0; i < 34; i++) {
-        indexes.push(i);
-    }
-    shuffle(indexes);
-
-    console.log('indexes: ', indexes);
-
     var $photos = $('.photos');
+    if($photos.length) {
+            
+        var indexes = [];
 
-    var j;
-    for (j = 0; j < indexes.length; j++) {
-        var index = indexes[j];
-        var img = $('<div class="item" style="background-image:url(assets/medias/photos/'+index+'.jpg);">');
-        $photos.append(img);
+        var i;
+        for (i = 0; i < 35; i++) {
+            indexes.push(i);
+        }
+        shuffle(indexes);
+
+        console.log('indexes: ', indexes);
+
+
+        var j;
+        for (j = 0; j < indexes.length; j++) {
+            var index = indexes[j];
+            var img = $('<div class="item" style="background-image:url(assets/medias/photos/'+index+'.jpg);">');
+            $photos.append(img);
+        }
+
+
+        $('.photos').flickity({
+            cellSelector: '.item',
+            imagesLoaded: true,
+            bgLazyLoad: 2,
+            lazyLoad: 2,
+            autoPlay: 3000,
+            pauseAutoPlayOnHover: false
+        });
     }
 
 
-    $('.photos').flickity({
-        cellSelector: '.item',
-        imagesLoaded: true,
-        bgLazyLoad: 2,
-        lazyLoad: 2,
-        autoPlay: 3000,
-        pauseAutoPlayOnHover: false
-    });
+    setTimeout(function() {
+        $('html').addClass('js-anim');
+    }, 500);
 });
 
 $(window).load(function() {
