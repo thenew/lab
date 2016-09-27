@@ -84,7 +84,7 @@ body {
     text-transform: uppercase;
     line-height: 1.2;
     letter-spacing: 1px;
-    opacity: .3;
+    opacity: 0;
 
     text-stroke: 0.1px #fefefe;
     -webkit-text-stroke: 0.1px #fefefe;
@@ -92,6 +92,8 @@ body {
 }
 
 .js-anim .text {
+    opacity: .3;
+    transition: opacity 3s ease-in-out;
     animation: unscale 15s infinite cubic-bezier(0.835, 0.160, 0.965, 0.645);
 }
 

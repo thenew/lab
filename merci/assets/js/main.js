@@ -8,7 +8,7 @@ $(document).ready(function() {
         var indexes = [];
 
         var i;
-        for (i = 0; i < 35; i++) {
+        for (i = 1; i < 35; i++) {
             indexes.push(i);
         }
         shuffle(indexes);
@@ -37,7 +37,7 @@ $(document).ready(function() {
 
     setTimeout(function() {
         $('html').addClass('js-anim');
-    }, 500);
+    }, 1000);
 });
 
 $(window).load(function() {
