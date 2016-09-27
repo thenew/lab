@@ -26,9 +26,9 @@ $(document).ready(function() {
 
         $('.photos').flickity({
             cellSelector: '.item',
-            imagesLoaded: true,
-            bgLazyLoad: 2,
-            lazyLoad: 2,
+            // imagesLoaded: true,
+            // bgLazyLoad: 2,
+            // lazyLoad: 2,
             autoPlay: 3000,
             pauseAutoPlayOnHover: false
         });
