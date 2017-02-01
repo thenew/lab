@@ -106,9 +106,9 @@ $(document).ready(function() {
 
 
 
-    setTimeout(function() {
-        $('html').addClass('js-anim');
-    }, 1000);
+    // setTimeout(function() {
+    //     $('html').addClass('js-anim');
+    // }, 1000);
 });
 
 $(window).load(function() {
