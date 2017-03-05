@@ -29,9 +29,7 @@
             <div class="date ts">2017 Fev</div>
             <div class="art-title">
                 <div class="titles ts">
-                    <div class="title js-previous-active"></div>
                     <div class="title js-active"></div>
-                    <div class="title js-next-active"></div>
                 </div>
             </div>
         </div>

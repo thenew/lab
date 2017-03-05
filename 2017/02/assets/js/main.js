@@ -39,8 +39,19 @@ $(document).ready(function() {
                 $photos.append($el);
             })
 
+            $('.photos .item').addClass('fade');
+
             $photos.imagesLoaded( function() {
                 $('html').addClass('js-images-loaded');
+                $($('.photos .item').get().reverse()).each(function(i, el) {
+                    setTimeout(function() {
+                        $(el).addClass('in');
+
+                        if(i == $('.photos .item').length - 1) {
+                            $('html').addClass('js-animation-complete');
+                        }
+                    }, (i*200 - i*15) );
+                });
             });
 
             ui();
@@ -59,15 +70,17 @@ $(document).ready(function() {
             title = title.replace(' ', '•');
             title = title.replace('[0]', '⓪');
 
-            var $title = $('.art-title .js-active')
-            var $titleNext = $('.art-title .js-next-active')
-            $titleNext.html(title)
-            $title.addClass('js-previous-active').removeClass('js-active')
-            $titleNext.addClass('js-active').removeClass('js-next-active')
+            var $title = $('.art-title .title')
 
-            // setTimeout(function() {
-                $('.art-title .js-previous-active').addClass('js-next-active').removeClass('js-previous-active')
-            // }, 100);
+                        $title.removeClass('js-active')
+            $title.addClass('js-active')
+
+            // var $titleNext = $('.art-title .js-next-active')
+            $title.html(title)
+            // $title.addClass('js-previous-active').removeClass('js-active')
+            // $titleNext.addClass('js-active').removeClass('js-next-active')
+
+            // $('.art-title .js-previous-active').addClass('js-next-active').removeClass('js-previous-active')
 
         })
 
@@ -80,6 +93,15 @@ $(document).ready(function() {
             }, 50 * i);
         })
 
+        $('.photos .item').each(function(i, el) {
+
+            setTimeout(function() {
+                var intervalId = window.setInterval(function() {
+                    $(el).toggleClass('toggle');
+                }, getRandomInt(150, 300));
+            }, 100 * i);
+        })
+
     }
 
 
@@ -89,3 +111,10 @@ $(document).ready(function() {
 $(window).load(function() {
     $('html').addClass('js-load');
 });
+
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
